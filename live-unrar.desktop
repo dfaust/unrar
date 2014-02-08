@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+Encoding=UTF-8
+ServiceTypes=KonqPopupMenu/Plugin,application/x-rar
+Icon=utilities-file-archiver
+Actions=LiveUnrar;
+
+[Desktop Action LiveUnrar]
+Name=Extract while downloading
+Icon=utilities-file-archiver
+Exec=konsole --title "unrar" --workdir "$(dirname %f)" -e unrar x -vap %f
