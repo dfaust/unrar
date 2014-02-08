@@ -842,6 +842,16 @@ void CommandData::ProcessSwitch(const wchar *Switch)
         case 'P':
           VolumePause=true;
           break;
+        case 'A':
+          if (toupperw(Switch[2])=='P')
+          {
+            VolumeAutoPause=true;
+            if (IsDigit(Switch[3]))
+              VolumeAutoPauseInterval=atoiw(Switch+3);
+            else
+              VolumeAutoPauseInterval=5;
+          }
+          break;
         case 'E':
           if (toupperw(Switch[2])=='R')
             VersionControl=atoiw(Switch+3)+1;
@@ -954,7 +964,7 @@ void CommandData::OutHelp(RAR_EXIT ExitCode)
     MCHelpSwO,MCHelpSwOC,MCHelpSwOR,MCHelpSwOW,MCHelpSwP,
     MCHelpSwPm,MCHelpSwR,MCHelpSwRI,MCHelpSwSL,MCHelpSwSM,MCHelpSwTA,
     MCHelpSwTB,MCHelpSwTN,MCHelpSwTO,MCHelpSwTS,MCHelpSwU,MCHelpSwVUnr,
-    MCHelpSwVER,MCHelpSwVP,MCHelpSwX,MCHelpSwXa,MCHelpSwXal,MCHelpSwY
+    MCHelpSwVER,MCHelpSwVP,MCHelpSwVAP,MCHelpSwX,MCHelpSwXa,MCHelpSwXal,MCHelpSwY
 #else
 #endif
   };

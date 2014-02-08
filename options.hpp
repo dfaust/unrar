@@ -152,6 +152,8 @@ class RAROptions
     bool Lock;
     bool Test;
     bool VolumePause;
+    bool VolumeAutoPause;
+    uint VolumeAutoPauseInterval;
     FilterMode FilterModes[MAX_FILTER_TYPES];
     wchar EmailTo[NM];
     uint VersionControl;

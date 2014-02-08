@@ -7,5 +7,6 @@ bool MergeArchive(Archive &Arc,ComprDataIO *DataIO,bool ShowFileName,
                   wchar Command);
 void SetVolWrite(Archive &Dest,int64 VolSize);
 bool AskNextVol(wchar *ArcName);
+void WaitNextVol(wchar *ArcName,uint Interval);
 
 #endif

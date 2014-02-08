@@ -52,6 +52,11 @@ bool MergeArchive(Archive &Arc,ComprDataIO *DataIO,bool ShowFileName,wchar Comma
     FailedOpen=true;
 #endif
 
+  if (Cmd->VolumeAutoPause)
+  {
+      WaitNextVol(NextName,Cmd->VolumeAutoPauseInterval);
+  }
+
   if (!FailedOpen)
     while (!Arc.Open(NextName,0))
     {
@@ -185,6 +190,25 @@ bool AskNextVol(wchar *ArcName)
   return true;
 }
 #endif
+
+
+void WaitNextVol(wchar *ArcName,uint Interval)
+{
+    eprintf(St(MWaitNextVol),ArcName);
+    while (!FileExist(ArcName))
+    {
+        sleep(Interval);
+    }
+    File *ArcFile=new File();
+    ArcFile->Open(ArcName,FMF_READ);
+    int64 ArcFileLastSize=0, ArcFileSize=1;
+    while (ArcFileSize!=ArcFileLastSize)
+    {
+        ArcFileLastSize=ArcFileSize;
+        sleep(Interval);
+        ArcFileSize=ArcFile->FileLength();
+    }
+}
 
 
 #ifdef RARDLL
